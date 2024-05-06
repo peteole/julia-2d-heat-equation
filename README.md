@@ -34,3 +34,11 @@ $$
 $N$ is the number of grid points in each direction including ghost cells. Therefore, the grid size is $1/(N-1)$.
 
 The solver will compute the discretization every `write_every` steps and write the result to a file called `output/{step}.vtr` with a field called `temperature`.
+
+To run an implementation, cd into the implementation directory and run the `run.sh` script with the config file as argument:
+
+```bash
+cd implementations/my_implementation
+./run.sh ../../config.yaml
+```
+This example will run `my_implementation` with the config file `config.yaml` in the main directory.
