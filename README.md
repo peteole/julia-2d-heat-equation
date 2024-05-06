@@ -42,3 +42,5 @@ cd implementations/my_implementation
 ./run.sh ../../config.yaml
 ```
 This example will run `my_implementation` with the config file `config.yaml` in the main directory.
+
+The parameter `write_every` specifies that the output should be written if `iteration % write_every == 0`. If `write_every==-1`, the output will never be written.

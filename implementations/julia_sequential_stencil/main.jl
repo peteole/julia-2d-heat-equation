@@ -29,7 +29,7 @@ function discretize_heat_equation(N, dt, t_end, write_every)
             end
         end
         U = U_new
-        if iteration % write_every == 0
+        if write_every!=-1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)",x, y) do vtk
                 vtk["temperature"] = U[:]
                 vtk["TimeValue"] = t
@@ -39,4 +39,4 @@ function discretize_heat_equation(N, dt, t_end, write_every)
     end
     vtk_save(pvd)
 end
-discretize_heat_equation(N, dt, t_end, write_every)
+@time discretize_heat_equation(N, dt, t_end, write_every)
