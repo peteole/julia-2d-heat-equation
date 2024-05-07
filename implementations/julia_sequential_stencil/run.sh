@@ -1,1 +1,1 @@
-julia main.jl $1
+julia --threads 4 main.jl $1

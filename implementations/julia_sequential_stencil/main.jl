@@ -20,11 +20,11 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     U[N, :] .= 0
     U[:, 1] .= 0
     U[:, N] .= 0
-    U_new= copy(U)
+    U_new::Matrix{Float64}= copy(U)
 
 
     for (iteration,t) = enumerate(0:dt:t_end)
-        for j = 2:N-1
+        Threads.@threads for j = 2:N-1
             for i = 2:N-1
                 @inbounds U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
             end
