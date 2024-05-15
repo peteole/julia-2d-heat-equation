@@ -10,8 +10,7 @@
 template <typename T>
 class Problem
 {
-    private:
-
+private:
     /*
      * @brief Read the program parameters from the provided file
      * @param[in] Name of the file to read from
@@ -35,16 +34,19 @@ class Problem
         write_every = 100;
 
         // get values from yaml if they exist. Partially generated with ChatGPT
-        if (config["N"])
-            N = config["N"].as<uint32_t>();
-        if (config["dt"])
-            dt = config["dt"].as<double>();
+        if (config["discretization"])
+        {
+            if (config["N"]){
+                N = config["discretization"]["N"].as<uint32_t>();
+                h = 1 / (N - 3);
+            }
+            if (config["dt"])
+                dt = config["discretization"]["dt"].as<double>();
+        }
         if (config["t_end"])
             t_end = config["t_end"].as<double>();
         if (config["write_every"])
             write_every = config["write_every"].as<uint32_t>();
-
-        return std::make_tuple(N, dt, t_end, write_every);
     }
 
     /*
@@ -53,6 +55,8 @@ class Problem
      */
     void boundary_setup()
     {
+
+        
         uint size = u.size();
         for (uint i = 1; i < u.size() - 1; i++)
         {
@@ -72,50 +76,57 @@ class Problem
 
 protected:
     /*
-    * @brief pointer to the array storing the temperature grid
-    */
-    std::shared_ptr<std::vector<std::vector<T>>>u;
+     * @brief pointer to the array storing the temperature grid
+     */
+    std::vector<std::vector<T>> u;
     /*
-    * @brief pointer to the temporary array
-    */
-    std::shared_ptr<std::vector<std::vector<T>>>u_temp;
+     * @brief pointer to the temporary array
+     */
+    std::vector<std::vector<T>> u_temp;
     /*
-    * @brief size of the domain including ghost cells
-    */
+     * @brief specifies how many steps are performed between outputs.
+     */
+    uint32_t write_every;
+    /*
+     * @brief size of the domain including ghost cells
+     */
     uint32_t N;
-    /*
-    * @brief time step size
+    /**
+     * @brief length of a domain cell
     */
+    T h;
+public:
+    /*
+     * @brief time step size
+     */
     T dt;
     /*
-    * @brief maximum time
-    */
+     * @brief maximum time
+     */
     T t_end;
-    /*
-    * @brief specifies how many steps are performed between outputs.
-    */
-    uint32_t write_every;   
+    
 
 
-public:
     Problem(std::string filename)
     {
         read_yaml(filename);
-        u = std::make_shared(N, std::vector<T>(N, 1));
-        u_temp = std::make_shared(N, std::vector<T>(N, 1));
+        u = std::vector<std::vector<T>>(N, std::vector<T>(N, 1));
+        u_temp = std::vector<std::vector<T>>(N, std::vector<T>(N, 1));
         boundary_setup();
     }
 
     /*
-    * abstract method for performing a timestep
-    */
-    void step() = 0;
+     * abstract method for performing a timestep
+     */
+    virtual void step() {}
 
-    void solve(){
+    void solve()
+    {
         uint32_t it = 0;
         T time = 0;
 
-        while(time < t_end){
+        while (time < t_end)
+        {
             step();
             time += dt;
             it++;
