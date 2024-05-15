@@ -44,3 +44,24 @@ cd implementations/my_implementation
 This example will run `my_implementation` with the config file `config.yaml` in the main directory.
 
 The parameter `write_every` specifies that the output should be written if `iteration % write_every == 0`. If `write_every==-1`, the output will never be written.
+
+## Benchmarking
+
+Further, each implementation has a benchmarking script that works similar to the `run.sh` script. It will run the implementation with the config file and measure the runtime. The benchmarking script is called `benchmark.sh`. Example usage:
+
+```bash
+cd implementations/my_implementation
+./benchmark.sh ../../config.yaml
+```
+This will output a file called `benchmark_results.yaml` in the implementation directory with the runtime of the implementation. The format of the file is:
+
+```yaml
+time_unit: "ns"
+time:
+  median: 428791.0
+  max: 4.582708e6
+  min: 409292.0
+  mean: 437511.7385
+  std: 113695.88615989713
+memory: 161544
+```

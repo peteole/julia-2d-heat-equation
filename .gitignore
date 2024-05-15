@@ -3,3 +3,4 @@
 .vscode/**
 implementations/*/output/**
 build/**
+implementations/*/benchmark_results.yaml
