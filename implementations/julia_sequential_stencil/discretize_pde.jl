@@ -20,7 +20,6 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
                 @inbounds U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
             end
         end
-        U, U_new = U_new, U
         if write_every!=-1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)",x, y) do vtk
                 vtk["temperature"] = U[:]
@@ -28,6 +27,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
                 pvd[t]=vtk
             end
         end
+        U, U_new = U_new, U
     end
     vtk_save(pvd)
 end
