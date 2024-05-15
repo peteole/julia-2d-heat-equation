@@ -36,17 +36,22 @@ private:
         // get values from yaml if they exist. Partially generated with ChatGPT
         if (config["discretization"])
         {
-            if (config["N"]){
+            if (config["discretization"]["N"]){
                 N = config["discretization"]["N"].as<uint32_t>();
                 h = 1 / (N - 3);
-            }
-            if (config["dt"])
-                dt = config["discretization"]["dt"].as<double>();
+            }else throw std::runtime_error("no N given");
+            if (config["discretization"]["dt"])
+                dt = config["discretization"]["dt"].as<T>();
+            else throw std::runtime_error("no dt given");
         }
         if (config["t_end"])
-            t_end = config["t_end"].as<double>();
+            t_end = config["t_end"].as<T>();
+        else throw std::runtime_error("no t_end given");
         if (config["write_every"])
-            write_every = config["write_every"].as<uint32_t>();
+            write_every = config["write_every"].as<int>();
+        else throw std::runtime_error("no write_every given");
+
+        std::cout << "t_end: " << t_end << " dt: " << dt << std::endl;
     }
 
     /*
@@ -86,7 +91,7 @@ protected:
     /*
      * @brief specifies how many steps are performed between outputs.
      */
-    uint32_t write_every;
+    int write_every;
     /*
      * @brief size of the domain including ghost cells
      */
