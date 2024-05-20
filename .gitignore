@@ -4,3 +4,4 @@
 implementations/*/output/**
 build/**
 implementations/*/benchmark_results.yaml
+implementations/*/complexity.json
