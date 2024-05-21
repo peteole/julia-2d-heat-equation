@@ -17,3 +17,4 @@ implementations/cpp_naive/CMakeCache.txt
 implementations/cpp_naive/benchmark
 implementations/cpp_naive/main
 implementations/cpp_naive/Makefile
+implementations/cpp_naive/.qt/
