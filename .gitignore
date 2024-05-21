@@ -10,3 +10,7 @@ implementations/*/benchmark_results.yaml
 implementations/*/complexity.json
 
 implementations/python/output.vtk
+implementations/cpp_naive/_deps
+implementations/cpp_naive/CMakeFiles
+implementations/cpp_naive/cmake_install.cmake
+implementations/cpp_naive/CMakeCache.txt
