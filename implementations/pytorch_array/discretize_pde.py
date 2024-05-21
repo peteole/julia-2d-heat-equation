@@ -24,9 +24,8 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int,devic
                 print(f"Writing output at iteration {iteration}")
                 grid = pv.grid.ImageData(dimensions=(N, N, 1))
                 # Convert the torch tensor to a numpy array
-                u = u.to("cpu").squeeze(0).numpy()
                 # Convert the numpy array to a vtk array
-                grid["temperature"] = u.flatten(order="F")
+                grid["temperature"] = u.cpu().numpy().flatten(order="F")
                 grid.save(f"output/{iteration}.vti")
             iteration += 1
                 

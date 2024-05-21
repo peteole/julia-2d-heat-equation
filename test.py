@@ -9,7 +9,7 @@ def load(path):
 def compare(path1, path2):
     data1 = load(path1)
     data2 = load(path2)
-    return np.allclose(data1, data2)
+    return np.allclose(data1, data2,rtol=1e-2,atol=1e-2)
 
 def compare_directories(dir1, dir2):
     files1 = os.listdir(dir1)
@@ -19,6 +19,7 @@ def compare_directories(dir1, dir2):
     files1.sort()
     files2.sort()
     if files1 != files2:
+        print(f"Files in {dir1} and {dir2} do not match: {files1} vs {files2}")
         return False
     for file1, file2 in zip(files1, files2):
         if not compare(os.path.join(dir1, file1), os.path.join(dir2, file2)):

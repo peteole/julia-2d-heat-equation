@@ -119,6 +119,10 @@ void discretize_heat_equation(ProblemConfig<T> config)
     u[N - 1][0] = 0;
     u[0][N - 1] = 0;
     u[N - 1][N - 1] = 0;
+
+    // clear the output directory
+    system("rm -rf output");
+    system("mkdir output");
     int iteration=1;
     for (double t = 0; t < config.t_end; t += config.dt)
     {
