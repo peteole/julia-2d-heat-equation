@@ -65,3 +65,9 @@ time:
   std: 113695.88615989713
 memory: 161544
 ```
+
+Julia packages needed:
+CUDA
+Metal
+BenchmarkTools#
+WriteVTK
