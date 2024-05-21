@@ -3,3 +3,5 @@
 .vscode/**
 implementations/*/output/**
 build/**
+implementations/python/**
+implementations/python/__pycache__/problem.cpython-310.pyc

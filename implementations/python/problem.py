@@ -39,7 +39,7 @@ class Problem:
             conv_layer = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=3, bias=False)
 
             # Set custom values for weights
-            custom_weights = torch.tensor([[[[1, 2, 3], [4, 5, 6], [7, 8, 9]]]], dtype=torch.float64)  # Example custom weights
+            custom_weights = torch.tensor([[[[0, 1, 0], [1, -4, 1], [0, 1, 0]]]], dtype=torch.float64)  # Example custom weights
             conv_layer.weight = nn.Parameter(custom_weights)
             conv_layer = conv_layer.to("cuda")
 
@@ -48,7 +48,15 @@ class Problem:
                 t += self.dt
             self.u = gpu_u.to("cpu").squeeze(0).numpy()
 
-            
+    def solve_torch_array(self):
+        t = 0
+        gpu_u = torch.tensor(self.u).to("cuda")
+        gpu_u.requires_grad_(False)
+        with torch.no_grad():
+            while t < self.t_end:
+                gpu_u[1:-1, 1:-1] += self.dt / (4 * self.h * self.h) * (gpu_u[0:-2, 1:-1] + gpu_u[2:, 1:-1] + gpu_u[1:-1,0:-2] + gpu_u[1:-1,2:] - 4 * gpu_u[1:-1, 1:-1])
+                t += self.dt
+            self.u = gpu_u.to("cpu").numpy()      
         
     def naive_step(self):
         u = self.u
