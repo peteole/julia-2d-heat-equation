@@ -22,7 +22,7 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int,devic
         # Set custom values for weights
         custom_weights = torch.tensor([[[[0., 1, 0], [1, -4, 1], [0, 1, 0]]]], device=device)
         conv_layer.weight = nn.Parameter(custom_weights)
-        iteration=0
+        iteration=1
         while t < t_end:
             u[:, 1:-1, 1:-1] += dt / (4 * h * h) * conv_layer(u)
             t += dt

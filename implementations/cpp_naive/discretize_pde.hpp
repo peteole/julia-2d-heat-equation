@@ -119,7 +119,7 @@ void discretize_heat_equation(ProblemConfig<T> config)
     u[N - 1][0] = 0;
     u[0][N - 1] = 0;
     u[N - 1][N - 1] = 0;
-    int iteration=0;
+    int iteration=1;
     for (double t = 0; t < config.t_end; t += config.dt)
     {
         for (int i = 1; i < config.N - 1; i++)

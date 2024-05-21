@@ -14,7 +14,7 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int):
     u[N - 1, 0:N - 1] = 0
     u=u.tolist()
     # Define the convolutional layer
-    iteration=0
+    iteration=1
     while t < t_end:
         u_tmp = u
         for i in range(1,N-1):

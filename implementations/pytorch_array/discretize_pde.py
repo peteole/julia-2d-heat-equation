@@ -16,7 +16,7 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int,devic
     u.requires_grad_(False)
     with torch.no_grad():
         # Define the convolutional layer
-        iteration=0
+        iteration=1
         while t < t_end:
             u[ 1:-1, 1:-1] +=dt / (4 * h * h) * (u[0:-2, 1:-1] + u[2:, 1:-1] + u[1:-1,0:-2] + u[1:-1,2:] - 4 * u[1:-1, 1:-1])
             t += dt
