@@ -32,9 +32,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     groups = (ceil(Int, N / threads[1]), ceil(Int, N / threads[2]))
     println("threads: ", threads, " groups: ", groups)
     for (iteration, t) = enumerate(0:dt:t_end)
-        Metal.@sync begin
-            @metal threads = threads groups = groups kernel(U, U_new)
-        end
+        Metal.@sync @metal threads = threads groups = groups kernel(U, U_new)
         if write_every != -1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)", x, y) do vtk
                 vtk["temperature"] = Array(U)[:]
