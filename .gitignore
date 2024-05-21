@@ -14,3 +14,6 @@ implementations/cpp_naive/_deps
 implementations/cpp_naive/CMakeFiles
 implementations/cpp_naive/cmake_install.cmake
 implementations/cpp_naive/CMakeCache.txt
+implementations/cpp_naive/benchmark
+implementations/cpp_naive/main
+implementations/cpp_naive/Makefile

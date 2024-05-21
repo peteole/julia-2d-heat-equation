@@ -14,9 +14,11 @@ if(NOT yaml-cpp_POPULATED)
   add_subdirectory(${yaml-cpp_SOURCE_DIR} ${yaml-cpp_BINARY_DIR})
 endif()
 # Add executable targets
-add_executable(main main.cpp utility.hpp)
+add_executable(main main.cpp discretize_pde.hpp)
 set_property(TARGET main PROPERTY CXX_STANDARD 17)
-
 target_compile_options(main PRIVATE -O3)
-
 target_link_libraries(main PUBLIC yaml-cpp::yaml-cpp)
+add_executable(benchmark benchmark.cpp discretize_pde.hpp)
+set_property(TARGET benchmark PROPERTY CXX_STANDARD 17)
+target_compile_options(benchmark PRIVATE -O3)
+target_link_libraries(benchmark PUBLIC yaml-cpp::yaml-cpp)
