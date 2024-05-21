@@ -13,14 +13,15 @@ write_every = config["write_every"]
 
 t = @benchmark discretize_heat_equation(N, dt, t_end, write_every)
 display(t)
+times_s= t.times ./ 1e9
 YAML.write_file("benchmark_results.yaml", Dict(
     "time" => Dict(
-        "mean" => mean(t.times),
-        "std" => std(t.times),
-        "median" => median(t.times),
-        "min" => minimum(t.times),
-        "max" => maximum(t.times)
+        "mean" => mean(times_s),
+        "std" => std(times_s),
+        "median" => median(times_s),
+        "min" => minimum(times_s),
+        "max" => maximum(times_s)
     ),
-    "time_unit" => "ns",
+    "time_unit" => "s",
     "memory" => t.memory
 ))

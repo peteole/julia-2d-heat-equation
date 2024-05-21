@@ -4,9 +4,10 @@
 implementations/*/output/**
 build/**
 implementations/python/**
-implementations/python/__pycache__/problem.cpython-310.pyc
+**/*.cpython-*.pyc
 
 implementations/*/benchmark_results.yaml
 implementations/*/complexity.json
 
 implementations/python/output.vtk
+
