@@ -41,7 +41,7 @@ The scripts of the project only work on unix systems. On Windows, use wsl2, or r
 To install the project, clone the repository. Install python3 and pip3, and a c++ compiler with cmake. Install julia. Create a venv:
 
 ```bash
-python -m venv env
+python3 -m venv env
 ```
 Activate the venv:
 
