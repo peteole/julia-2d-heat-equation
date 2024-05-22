@@ -1,10 +1,13 @@
 using WriteVTK
 using CUDA
 
-function heat_kernel(U, U_new, dt, h)
-    i = thread_index.x + 2
-    j = thread_index.y + 2
-    U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
+function heat_kernel(U, U_new, dt, h, N)
+    j = threadIdx().x + (blockIdx().x - 1) * blockDim().x
+    i = threadIdx().y + (blockIdx().y - 1) * blockDim().y
+    if i < N && j < N && i > 1 && j > 1
+        U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
+    end
+    return
 end
 
 function discretize_heat_equation(N::Int, dt::Float32, t_end::Float32, write_every::Int)
@@ -22,11 +25,14 @@ function discretize_heat_equation(N::Int, dt::Float32, t_end::Float32, write_eve
     U[:, N] .= 0
 
     U_new::CuArray{Float32} = copy(U)
+    #print("array setup complete\n")
 
+    block_size = (128, 8)
+    grid_size = (ceil(Int, N / block_size[1]), ceil(Int, N / block_size[2]))
     for (iteration, t) = enumerate(0:dt:t_end)
-        print("launch kernel")
-        @cuda threads=(N - 2, N - 2) heat_kernel(U, U_new, dt, h)
-        print("iteration complete")
+        #print("launching kernel\n")
+        @cuda threads=block_size blocks=grid_size heat_kernel(U, U_new, dt, h, N)
+        #print("iteration complete")
         if write_every != -1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)", x, y) do vtk
                 vtk["temperature"] = Array(U)[:]
