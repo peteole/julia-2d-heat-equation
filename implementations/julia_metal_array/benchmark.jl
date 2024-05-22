@@ -11,7 +11,7 @@ dt = config["discretization"]["dt"]
 t_end = config["t_end"]
 write_every = config["write_every"]
 
-t = @benchmark discretize_heat_equation(N, dt, t_end, write_every)
+t = @benchmark discretize_heat_equation(N, Float32(dt), Float32(t_end), write_every)
 display(t)
 times_s= t.times ./ 1e9
 YAML.write_file("benchmark_results.yaml", Dict(
