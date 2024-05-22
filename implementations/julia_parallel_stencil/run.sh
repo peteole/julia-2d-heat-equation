@@ -1,0 +1,1 @@
+julia  --project=. --threads=4 main.jl $1
