@@ -2,6 +2,7 @@ import numpy as np
 import pyvista as pv
 import os
 import shutil
+import tqdm
 def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int):
     shutil.rmtree("output", ignore_errors=True)
     os.makedirs("output", exist_ok=True)
@@ -15,7 +16,7 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int):
     u=u.tolist()
     # Define the convolutional layer
     iteration=1
-    while t < t_end:
+    for t in tqdm.tqdm(np.arange(0, t_end, dt)):
         u_tmp = u
         for i in range(1,N-1):
             for j in range(1,N- 1):
@@ -23,7 +24,6 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int):
         u = u_tmp
         t += dt
         if write_every != -1 and iteration % write_every == 0:
-            print(f"Writing output at iteration {iteration}")
             grid = pv.grid.ImageData(dimensions=(N, N, 1))
             # Convert the torch tensor to a numpy array
             # Convert the numpy array to a vtk array

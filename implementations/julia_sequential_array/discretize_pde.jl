@@ -1,4 +1,5 @@
 using WriteVTK
+using ProgressBars
 function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_every::Int)
     pvd = paraview_collection("output/solution.pvd")
     h = 1 / (N - 1)
@@ -15,7 +16,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     U_new::Matrix{Float64} = copy(U)
 
 
-    for (iteration, t) = enumerate(0:dt:t_end)
+    for (iteration, t) = ProgressBar(enumerate(0:dt:t_end))
         @views U_new[2:end-1, 2:end-1] .= U[2:end-1, 2:end-1] .+ dt / (4 * h^2) .* (
             U[1:end-2, 2:end-1] .+
             U[3:end, 2:end-1] .+

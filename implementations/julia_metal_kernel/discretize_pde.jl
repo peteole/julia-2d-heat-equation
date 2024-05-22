@@ -1,5 +1,6 @@
 using WriteVTK
 using Metal
+using ProgressBars
 function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_every::Int)
     pvd = paraview_collection("output/solution.pvd")
     h = 1 / (N - 1) |> Float32
@@ -31,7 +32,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     threads = (floor(Int, sqrt(max_threads)), floor(Int, sqrt(max_threads)))
     groups = (ceil(Int, N / threads[1]), ceil(Int, N / threads[2]))
     println("threads: ", threads, " groups: ", groups)
-    for (iteration, t) = enumerate(0:dt:t_end)
+    for (iteration, t) in ProgressBar(enumerate(0:dt:t_end))
         Metal.@sync @metal threads = threads groups = groups kernel(U, U_new)
         if write_every != -1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)", x, y) do vtk
