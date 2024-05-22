@@ -1,7 +1,6 @@
 import yaml
 import sys
 from discretize_pde import discretize_heat_equation
-import torch
 filename = sys.argv[1]
 with open(filename) as stream:
     node = yaml.safe_load(stream)

@@ -35,6 +35,34 @@ $N$ is the number of grid points in each direction including ghost cells. Theref
 
 The solver will compute the discretization every `write_every` steps and write the result to a file called `output/{step}.vtr` with a field called `temperature`.
 
+## Installation
+The scripts of the project only work on unix systems. On Windows, use wsl2, or run the programs manually.
+
+To install the project, clone the repository. Install python3 and pip3, and a c++ compiler with cmake. Install julia. Create a venv:
+
+```bash
+python -m venv env
+```
+Activate the venv:
+
+```bash
+source env/bin/activate
+```
+Or on fish:
+
+```bash
+. env/bin/activate.fish
+```
+
+Now install all the dependencies:
+
+```bash
+./install.sh
+```
+
+
+## Running an implementation
+
 To run an implementation, cd into the implementation directory and run the `run.sh` script with the config file as argument:
 
 ```bash
@@ -65,9 +93,11 @@ time:
   std: 113695.88615989713
 memory: 161544
 ```
+## Testing
 
-Julia packages needed:
-CUDA
-Metal
-BenchmarkTools#
-WriteVTK
+Run the tests with the following command:
+
+```bash
+./test.sh
+```
+This will run each implementation and compare the output to our reference implementation.
