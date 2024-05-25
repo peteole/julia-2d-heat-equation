@@ -10,7 +10,7 @@ function heat_kernel(U, U_new, dt, h, N)
     return
 end
 
-function discretize_heat_equation(N::Int, dt::Float32, t_end::Float32, write_every::Int)
+function discretize_heat_equation(N::Int, dt, t_end, write_every::Int)
     pvd = paraview_collection("output/solution.pvd")
     h = Float32(1 / (N - 1))
     x = 0:h:1
@@ -27,7 +27,7 @@ function discretize_heat_equation(N::Int, dt::Float32, t_end::Float32, write_eve
     U_new::CuArray{Float32} = copy(U)
     #print("array setup complete\n")
 
-    block_size = (128, 8)
+    block_size = (8, 8)
     grid_size = (ceil(Int, N / block_size[1]), ceil(Int, N / block_size[2]))
     for (iteration, t) = enumerate(0:dt:t_end)
         #print("launching kernel\n")
