@@ -12,3 +12,6 @@ implementations/*/complexity.json
 implementations/python/output.vtk
 
 env
+
+implementations/cpp_naive/build/**
+implementations/cuda_cpp/build/**

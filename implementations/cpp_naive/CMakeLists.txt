@@ -1,7 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
-project(CPPModernTrendsInHPC)
+cmake_minimum_required(VERSION 3.18)
+project(CPPModernTrendsInHPC LANGUAGES CXX CUDA)
 
 include(FetchContent)
+
+set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+set(CMAKE_CUDA_COMPILER /usr/bin/clang++)
+
+enable_language(CUDA)
 
 # Fetch yaml-cpp
 FetchContent_Declare(
@@ -22,16 +27,18 @@ if (NOT VTK_FOUND)
   message(FATAL_ERROR "Cannot find VTK")
 endif()
 
+find_package(CUDA REQUIRED)
+
 # Add executable targets
 add_executable(main main.cpp discretize_pde.hpp)
 set_property(TARGET main PROPERTY CXX_STANDARD 17)
 target_compile_options(main PRIVATE -O3)
-target_link_libraries(main PUBLIC yaml-cpp::yaml-cpp ${VTK_LIBRARIES})
+target_link_libraries(main PUBLIC yaml-cpp::yaml-cpp ${VTK_LIBRARIES} ${CUDA_LIBRARIES})
 
 add_executable(benchmark benchmark.cpp discretize_pde.hpp)
 set_property(TARGET benchmark PROPERTY CXX_STANDARD 17)
 target_compile_options(benchmark PRIVATE -O3)
-target_link_libraries(benchmark PUBLIC yaml-cpp::yaml-cpp ${VTK_LIBRARIES})
+target_link_libraries(benchmark PUBLIC yaml-cpp::yaml-cpp ${VTK_LIBRARIES} ${CUDA_LIBRARIES})
 
 # Include VTK headers
 include(${VTK_USE_FILE})
