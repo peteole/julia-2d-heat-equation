@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.3"
+julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "4a6dbba854ec1ce2e52a306ba815fc43730fc56d"
+project_hash = "7df3ba9414a87cc2b6f74eabb275fcb3bf1199fc"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -126,7 +126,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.1.1+0"
+version = "1.1.0+0"
 
 [[deps.Crayons]]
 git-tree-sha1 = "249fe38abf76d48563e2f4556bebd215aa317e15"
@@ -438,6 +438,12 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 [[deps.Profile]]
 deps = ["Printf"]
 uuid = "9abbd945-dff8-562f-b5e8-e1ebf5ef1b79"
+
+[[deps.ProgressBars]]
+deps = ["Printf"]
+git-tree-sha1 = "b437cdb0385ed38312d91d9c00c20f3798b30256"
+uuid = "49802e3a-d2f1-5c88-81d8-b72133a6f568"
+version = "1.5.1"
 
 [[deps.REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]

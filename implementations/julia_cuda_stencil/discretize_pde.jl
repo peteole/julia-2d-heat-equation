@@ -1,11 +1,12 @@
 using WriteVTK
 using CUDA
+using ProgressBars
 
 function heat_kernel(U, U_new, dt, h, N)
     j = threadIdx().x + (blockIdx().x - 1) * blockDim().x
     i = threadIdx().y + (blockIdx().y - 1) * blockDim().y
     if i < N && j < N && i > 1 && j > 1
-        U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
+        @inbounds U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
     end
     return
 end
@@ -29,7 +30,7 @@ function discretize_heat_equation(N::Int, dt, t_end, write_every::Int)
 
     block_size = (8, 8)
     grid_size = (ceil(Int, N / block_size[1]), ceil(Int, N / block_size[2]))
-    for (iteration, t) = enumerate(0:dt:t_end)
+    for (iteration, t) = ProgressBar(enumerate(0:dt:t_end))
         #print("launching kernel\n")
         @cuda threads=block_size blocks=grid_size heat_kernel(U, U_new, dt, h, N)
         #print("iteration complete")
