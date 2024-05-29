@@ -11,7 +11,7 @@ with open(filename) as stream:
     t_end = node["t_end"]
     write_every = node["write_every"]
     #benchmark
-    num_iterations=5
+    num_iterations=1
     times=[]
     for i in range(num_iterations):
         start=time.time()
