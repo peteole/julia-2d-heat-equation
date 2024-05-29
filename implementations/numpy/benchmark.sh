@@ -1,1 +1,1 @@
-python3.11 benchmark.py $1
+python3 benchmark.py $1
