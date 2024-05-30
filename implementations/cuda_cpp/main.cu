@@ -2,11 +2,13 @@
 #include <iostream>
 #include <memory>
 #include <chrono>
+#include <string>
+#include <fstream>
 // #include "discretize_pde.hpp"
 
 #include "cuda_heat.cu"
 
-std::unique_ptr<std::vector<std::vector<float>>> device_to_vector_of_vectors(float *U_dev, int N)
+void write_solution(float *U_dev, int N, std::string path)
 {
     float *U_host = (float *)malloc(N * N * sizeof(float));
     if (!U_host)
@@ -18,25 +20,25 @@ std::unique_ptr<std::vector<std::vector<float>>> device_to_vector_of_vectors(flo
     {
         std::cout << "Failed to copy memory to host: " << cudaGetErrorString(err);
     }
-
-    std::unique_ptr<std::vector<std::vector<float>>> out = std::make_unique<std::vector<std::vector<float>>>(N, std::vector<float>(N, 0));
-
+    // write to file
+    std::cout << "writing to file: " << path << std::endl;
+    std::ofstream file;
+    file.open(path);
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
         {
-            (*out)[i][j] = U_host[i * N + j];
+            file << U_host[i * N + j] << " ";
         }
+        file << "\n";
     }
+    file.close();
     free(U_host);
-    return out;
 }
 
-void discretize_heat_equation_cuda()
+void discretize_heat_equation_cuda(int N, float dt, float t_end, int write_every)
 {
-    auto N = 2000;
     float h = 1.0 / (N - 1);
-    float dt = 0.000002;
 
     float *U;
     float *U_temp;
@@ -56,9 +58,10 @@ void discretize_heat_equation_cuda()
     auto start = std::chrono::steady_clock::now();
 
     dim3 threadsPerBlock(8, 8);
-    dim3 numBlocks = ((int)std::ceil((float)N / threadsPerBlock.x), (int)std::ceil((float)N / threadsPerBlock.y));
+    dim3 numBlocks(N / threadsPerBlock.x + 1, (N / threadsPerBlock.y + 1));
 
     domain_setup<<<numBlocks, threadsPerBlock>>>(U, N);
+    domain_setup<<<numBlocks, threadsPerBlock>>>(U_temp, N);
     cudaDeviceSynchronize();
     cudaError_t err = cudaGetLastError();
     if (err != cudaSuccess)
@@ -67,7 +70,7 @@ void discretize_heat_equation_cuda()
     }
 
     int iteration = 1;
-    for (double t = 0; t < 0.01; t += dt)
+    for (double t = 0; t < t_end; t += dt)
     {
         heat_step<<<numBlocks, threadsPerBlock>>>(U, U_temp, N, dt, h);
         cudaDeviceSynchronize();
@@ -75,6 +78,10 @@ void discretize_heat_equation_cuda()
         if (err != cudaSuccess)
         {
             std::cout << "CUDA Error after heat_step: " << cudaGetErrorString(err) << std::endl;
+        }
+        if (iteration % write_every == 0 && write_every > 0)
+        {
+            write_solution(U, N, "output_raw/" + std::to_string(iteration)+","+std::to_string(t) + ".txt");
         }
 
         iteration++;
@@ -84,19 +91,29 @@ void discretize_heat_equation_cuda()
         U = temp;
     }
 
-    auto host_vector_of_vectors = device_to_vector_of_vectors(U_temp, N);
 
     cudaFree(U);
     cudaFree(U_temp);
 
     auto end = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    std::cout << "U[10][10]" << (*host_vector_of_vectors)[10][10] << "\n";
     std::cout << "completed operation in " << duration << "ms";
     std::cout << "iterations: " << iteration << "\n";
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-    discretize_heat_equation_cuda();
+    // Check if the correct number of arguments are provided
+    if (argc != 5)
+    {
+        std::cerr << "Usage: " << argv[0] << " <N> <dt> <t_end> <write_every>" << std::endl;
+        return 1;
+    }
+
+    // Parse the arguments
+    int N = std::atoi(argv[1]);
+    float dt = std::atof(argv[2]);
+    float t_end = std::atof(argv[3]);
+    int write_every = std::atoi(argv[4]);
+    discretize_heat_equation_cuda(N, dt, t_end, write_every);
 }

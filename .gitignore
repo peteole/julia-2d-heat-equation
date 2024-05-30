@@ -15,3 +15,4 @@ env
 
 implementations/cpp_naive/build/**
 implementations/cuda_cpp/build/**
+implementations/cuda_cpp/main

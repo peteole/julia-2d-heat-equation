@@ -1,1 +1,1 @@
-./main
+julia --project=. run.jl $1
