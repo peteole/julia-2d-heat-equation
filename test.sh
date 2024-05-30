@@ -7,7 +7,7 @@ for folder in implementations/*; do
     if [ -f "$folder/run.sh" ]; then
       cd $folder
       echo "Running run.sh in $folder"
-      ./run.sh ../../config.yaml
+      ./run.sh ../../config_test.yaml
       cd ../..
     else
       echo "No run.sh found in $folder"
