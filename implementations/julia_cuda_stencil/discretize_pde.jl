@@ -32,7 +32,7 @@ function discretize_heat_equation(N::Int, dt, t_end, write_every::Int)
     grid_size = (ceil(Int, N / block_size[1]), ceil(Int, N / block_size[2]))
     for (iteration, t) = ProgressBar(enumerate(0:dt:t_end))
         #print("launching kernel\n")
-        @cuda threads=block_size blocks=grid_size heat_kernel(U, U_new, dt, h, N)
+        CUDA.@sync @cuda threads=block_size blocks=grid_size heat_kernel(U, U_new, dt, h, N)
         #print("iteration complete")
         if write_every != -1 && iteration % write_every == 0
             vtk_grid("output/$(iteration)", x, y) do vtk
