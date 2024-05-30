@@ -1,0 +1,5 @@
+discretization:
+  N: 1600
+  dt: 0.0000002
+t_end: 0.001
+write_every: -1
