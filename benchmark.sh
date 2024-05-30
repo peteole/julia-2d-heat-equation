@@ -1,0 +1,1 @@
+julia --project=. run_benchmarks.jl

@@ -10,7 +10,11 @@ for benchmark in readdir("benchmark_configs/")
         end
         try
             println("Running benchmark $benchmark for $implementation")
-            run(Cmd(`./benchmark.sh ../../benchmark_configs/$benchmark`; dir="implementations/$implementation"))
+            proc=run(Cmd(`timeout 60 ./benchmark.sh ../../benchmark_configs/$benchmark`; dir="implementations/$implementation"))
+            if proc.exitcode == 124
+                println("Benchmark $benchmark timed out for $implementation")
+                continue
+            end
         catch e
             if isa(e, ProcessFailedException)
                 println("Benchmark $benchmark failed for $implementation")
