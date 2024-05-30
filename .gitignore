@@ -16,4 +16,4 @@ env
 implementations/cpp_naive/build/**
 implementations/cuda_cpp/build/**
 implementations/cuda_cpp/main
-implementations/cuda_cpp/output_raw/**
+implementations/cpp_cuda_stencil/output_raw/**
