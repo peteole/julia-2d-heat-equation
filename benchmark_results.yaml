@@ -147,7 +147,26 @@
       mean: 0.10313999634693881
       std: 0.002484073740065412
     memory: 19688976
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.163973676
+      max: 0.167731779
+      min: 0.162012235
+      mean: 0.16418149990322578
+      std: 0.0014683733881366004
+    memory: 1624
 400.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.594560846
+      max: 0.598865723
+      min: 0.588062598
+      mean: 0.5943531226666666
+      std: 0.003596615793585459
+    memory: 1624
+
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -347,6 +366,15 @@
       mean: 0.03263006570779221
       std: 0.002538896963039267
     memory: 1836984
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.056092313500000004
+      max: 0.065663777
+      min: 0.052658766
+      mean: 0.05600107982222221
+      std: 0.001584773553338933
+    memory: 1624
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -366,6 +394,15 @@
       std: 0.003182735675729974
     memory: 19688976
 800.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 2.299914497
+      max: 2.300731133
+      min: 2.294201265
+      mean: 2.298282298333333
+      std: 0.0035577870073907497
+    memory: 1624
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -445,6 +482,15 @@
       std: 0.0024806744376781554
     memory: 21769560
 3200.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 45.16533125
+      max: 45.16533125
+      min: 45.16533125
+      mean: 45.16533125
+      std: .NaN
+    memory: 1624
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -507,6 +553,16 @@
       std: 0.011078191404636444
     memory: 25670736
 1600.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 11.570069647
+      max: 11.570069647
+      min: 11.570069647
+      mean: 11.570069647
+      std: .NaN
+    memory: 1624
+
   julia_parallel_stencil:
     time_unit: "s"
     time:
