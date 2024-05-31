@@ -552,6 +552,15 @@
       mean: 1.3819321974999998
       std: 0.011078191404636444
     memory: 25670736
+  julia_cuda_array:
+    time_unit: "s"
+    time:
+      median: 0.845747373
+      max: 0.853409944
+      min: 0.677325988
+      mean: 0.8199709501428571
+      std: 0.06357947791887752
+memory: 21821344
 1600.yaml:
   cpp_naive:
     time_unit: "s"
