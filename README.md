@@ -1,6 +1,6 @@
 # hpc-lab
 
-We compute the 2d heat equation using explicit euler method:
+We compute the 2d heat equation using the explicit Euler method:
 
 $$
 \frac{\partial u}{\partial t} = \nabla^2 u\\
@@ -11,6 +11,7 @@ $$
 where $u$ is the temperature field.
 
 The discretization is described in a config file of the following form:
+
 ```yaml
 discretization:
   N: 100
@@ -18,17 +19,18 @@ discretization:
 t_end: 3.0
 write_every: 10
 ```
+
 The discretization works using the following scheme:
 $$
-u_{i,j}^t \approx u(x_i, y_j, t)\\
-x_i = i \cdot h\\
-y_j = j \cdot h\\
-t_n = n \cdot \Delta t\\
-h = \frac{1}{N-1}\\
-\Delta t = dt\\
-u_{i,j}^{t+1} = u_{i,j}^t + \frac{\Delta}{4h^2} \cdot (u_{i+1,j}^t + u_{i-1,j}^t + u_{i,j+1}^t + u_{i,j-1}^t - 4 \cdot u_{i,j}^t)\\
-u_{i,j}^0 = 1\\
-u_{i,j}^t = 0 \quad \text{for} \quad i = 0, i = n, j = 0, j = n
+  u_{i,j}^n \approx u(x_i, y_j, t_n) \\
+  x_i = i \cdot h \\
+  y_j = j \cdot h \\
+  t_n = n \cdot \Delta t \\
+  h = \frac{1}{N-1} \\
+  u_{i,j}^{n+1}= u_{i,j}^n + \frac{\Delta t}{4h^2} \cdot (u_{i+1,j}^n + u_{i-1,j}^n + u_{i,j+1}^n + u_{i,j-1}^n\\
+  \quad - 4 \cdot u_{i,j}^n) \\
+  u_{i,j}^0 = 1 \\
+  u_{i,j}^n = 0 \quad \text{for} \quad i = 0, i = N, j = 0, j = N
 $$
 
 $N$ is the number of grid points in each direction including ghost cells. Therefore, the grid size is $1/(N-1)$.
@@ -36,6 +38,7 @@ $N$ is the number of grid points in each direction including ghost cells. Theref
 The solver will compute the discretization every `write_every` steps and write the result to a file called `output/{step}.vtr` with a field called `temperature`.
 
 ## Installation
+
 The scripts of the project only work on unix systems. On Windows, use wsl2, or run the programs manually.
 
 To install the project, clone the repository. Install python3 and pip3, and a c++ compiler with cmake. Install julia. Create a venv:
@@ -43,11 +46,13 @@ To install the project, clone the repository. Install python3 and pip3, and a c+
 ```bash
 python3 -m venv env
 ```
+
 Activate the venv:
 
 ```bash
 source env/bin/activate
 ```
+
 Or on fish:
 
 ```bash
@@ -60,7 +65,6 @@ Now install all the dependencies:
 ./install.sh
 ```
 
-
 ## Running an implementation
 
 To run an implementation, cd into the implementation directory and run the `run.sh` script with the config file as argument:
@@ -69,6 +73,7 @@ To run an implementation, cd into the implementation directory and run the `run.
 cd implementations/my_implementation
 ./run.sh ../../config.yaml
 ```
+
 This example will run `my_implementation` with the config file `config.yaml` in the main directory.
 
 The parameter `write_every` specifies that the output should be written if `iteration % write_every == 0`. If `write_every==-1`, the output will never be written.
@@ -81,6 +86,7 @@ Further, each implementation has a benchmarking script that works similar to the
 cd implementations/my_implementation
 ./benchmark.sh ../../config.yaml
 ```
+
 This will output a file called `benchmark_results.yaml` in the implementation directory with the runtime of the implementation. The format of the file is:
 
 ```yaml
@@ -93,6 +99,7 @@ time:
   std: 113695.88615989713
 memory: 161544
 ```
+
 ## Testing
 
 Run the tests with the following command:
@@ -100,4 +107,5 @@ Run the tests with the following command:
 ```bash
 ./test.sh
 ```
+
 This will run each implementation and compare the output to our reference implementation.
