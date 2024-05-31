@@ -1,0 +1,300 @@
+6400.yaml: {}
+200.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 0.089714834
+      max: 0.141273875
+      min: 0.072691458
+      mean: 0.09522720750943396
+      std: 0.017736787782061555
+    memory: 13923600
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.098
+      max: 0.102
+      min: 0.09
+      mean: 0.09679999999999998
+      std_dev: 0.004284857057125934
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 1.2394625205
+      max: 1.366801708
+      min: 1.199268167
+      mean: 1.2612487289999998
+      std: 0.07517490373905053
+    memory: 63688296
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 0.26465325
+      max: 0.27395825
+      min: 0.2613295
+      mean: 0.265235298368421
+      std: 0.003641163037419396
+    memory: 2337528
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 0.075377209
+      max: 0.0802545
+      min: 0.071896917
+      mean: 0.07544280974626866
+      std: 0.001849404578215609
+    memory: 2321288
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 2.356299834
+      max: 2.416022917
+      min: 2.255016667
+      mean: 2.342446472666667
+      std: 0.08139219772152324
+    memory: 28169176
+400.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 0.1625886045
+      max: 0.24528375
+      min: 0.1566775
+      mean: 0.17252036113333336
+      std: 0.021725625840820825
+    memory: 15851808
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.356
+      max: 0.365
+      min: 0.352
+      mean: 0.35729999999999995
+      std_dev: 0.004148493702542811
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 1.3143905835
+      max: 1.331150542
+      min: 1.238058084
+      mean: 1.29949744825
+      std: 0.04250182216985922
+    memory: 63664152
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 1.032107541
+      max: 1.035845083
+      min: 1.030327916
+      mean: 1.0324940664
+      std: 0.0020280643542455565
+    memory: 4318464
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 0.29269931250000003
+      max: 0.297351333
+      min: 0.288196542
+      mean: 0.2922642036111111
+      std: 0.0027336246238056938
+    memory: 4257360
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 2.81140025
+      max: 2.853353708
+      min: 2.769446792
+      mean: 2.81140025
+      std: 0.0593311492920501
+    memory: 28238144
+12800.yaml: {}
+100.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 0.047395709
+      max: 0.216002167
+      min: 0.043009583
+      mean: 0.061590501012048195
+      std: 0.04215340846764325
+    memory: 13439656
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 0.021
+      max: 0.033
+      min: 0.021
+      mean: 0.022399999999999996
+      std_dev: 0.0035552777669262637
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 1.3121306455
+      max: 1.345164958
+      min: 1.255011583
+      mean: 1.306109458
+      std: 0.038640596327055035
+    memory: 63684944
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 0.068090083
+      max: 0.080380041
+      min: 0.067036167
+      mean: 0.06909771119178083
+      std: 0.0024705803110955677
+    memory: 1841336
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 0.023091854000000002
+      max: 0.034194583
+      min: 0.022379459
+      mean: 0.023590129740566033
+      std: 0.0016103163200229746
+    memory: 1837320
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 2.470838458
+      max: 2.561051125
+      min: 2.194819833
+      mean: 2.4089031386666666
+      std: 0.19080966339703243
+    memory: 28169904
+800.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 0.457654083
+      max: 0.494241333
+      min: 0.451452
+      mean: 0.4642664014545455
+      std: 0.014040064580616386
+    memory: 23552456
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 1.234
+      max: 1.29
+      min: 1.229
+      mean: 1.2396
+      std_dev: 0.016989408465275524
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 1.3445500415
+      max: 1.36923675
+      min: 1.311857042
+      mean: 1.34254846875
+      std: 0.02511807646943603
+    memory: 65760776
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 4.2709339375
+      max: 4.281073458
+      min: 4.260794417
+      mean: 4.2709339375
+      std: 0.01433944740706018
+    memory: 12254616
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 1.183408917
+      max: 1.276904041
+      min: 1.16522025
+      mean: 1.2042943166
+      std: 0.04405294819682343
+    memory: 12011136
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 4.3750303125
+      max: 4.37986975
+      min: 4.370190875
+      mean: 4.3750303125
+      std: 0.00684399814675732
+    memory: 28376032
+3200.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 13.624910667
+      max: 13.624910667
+      min: 13.624910667
+      mean: 13.624910667
+      std: .NaN
+    memory: 178164024
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 11.144092416
+      max: 11.144092416
+      min: 11.144092416
+      mean: 11.144092416
+      std: .NaN
+    memory: 90675888
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 12.281519917
+      max: 12.281519917
+      min: 12.281519917
+      mean: 12.281519917
+      std: .NaN
+    memory: 54036744
+1600.yaml:
+  julia_parallel_stencil:
+    time_unit: "s"
+    time:
+      median: 2.455937459
+      max: 2.501623291
+      min: 2.409791
+      mean: 2.4557839166666664
+      std: 0.045916338040105885
+    memory: 54431104
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 5.751
+      max: 5.895
+      min: 5.654
+      mean: 5.751899999999999
+      std_dev: 0.059444848389145696
+  julia_metal_array:
+    time_unit: "s"
+    time:
+      median: 4.4152242085
+      max: 4.544214917
+      min: 4.2862335
+      mean: 4.4152242085
+      std: 0.18242040938081439
+    memory: 66152624
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 16.709328667
+      max: 16.709328667
+      min: 16.709328667
+      mean: 16.709328667
+      std: .NaN
+    memory: 43919864
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 6.346819959
+      max: 6.346819959
+      min: 6.346819959
+      mean: 6.346819959
+      std: .NaN
+    memory: 43134008
+  julia_metal_stencil:
+    time_unit: "s"
+    time:
+      median: 7.743000291
+      max: 7.743000291
+      min: 7.743000291
+      mean: 7.743000291
+      std: .NaN
+    memory: 53674448
