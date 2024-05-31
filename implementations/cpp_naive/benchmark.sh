@@ -1,1 +1,1 @@
-./benchmark $1
+julia --project=. benchmark.jl $1

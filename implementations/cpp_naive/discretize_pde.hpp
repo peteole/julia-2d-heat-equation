@@ -6,13 +6,8 @@
 #include <string>
 #include <exception>
 #include <memory>
+#include "write_txt.hpp"
 
-
-#include <vtkSmartPointer.h>
-#include <vtkImageData.h>
-#include <vtkDoubleArray.h>
-#include <vtkPointData.h>
-#include <vtkXMLImageDataWriter.h>
 
 
 template <typename T>
@@ -66,42 +61,12 @@ public:
     }
 };
 
-template <typename T>
-void write_vti_file(const std::vector<std::vector<T>>& data, int iteration, uint32_t N)
-{
-    std::cout << "writing iteration" << iteration << std::endl;
-    auto imageData = vtkSmartPointer<vtkImageData>::New();
-    imageData->SetDimensions(N, N, 1);
-    imageData->AllocateScalars(VTK_DOUBLE, 1);
-
-    auto temperatureArray = vtkSmartPointer<vtkDoubleArray>::New();
-    temperatureArray->SetName("temperature");
-    temperatureArray->SetNumberOfComponents(1);
-    temperatureArray->SetNumberOfTuples(N * N);
-
-    for (uint32_t i = 0; i < N; i++)
-    {
-        for (uint32_t j = 0; j < N; j++)
-        {
-            double* pixel = static_cast<double*>(imageData->GetScalarPointer(i, j, 0));
-            pixel[0] = data[i][j];
-            temperatureArray->SetTuple1(i * N + j, data[i][j]);
-        }
-    }
-
-    imageData->GetPointData()->SetScalars(temperatureArray);
-
-    std::string filename = "output/" + std::to_string(iteration) + ".vti";
-    auto writer = vtkSmartPointer<vtkXMLImageDataWriter>::New();
-    writer->SetFileName(filename.c_str());
-    writer->SetInputData(imageData);
-    writer->Write();
-}
 
 template <typename T>
 void discretize_heat_equation(ProblemConfig<T> config)
 {
     auto N = config.N;
+    std::cout<<"Discretizing heat equation with N="<<N<<", dt="<<config.dt<<", t_end="<<config.t_end<<", write_every="<<config.write_every<<std::endl;
     auto u = std::vector<std::vector<T>>(config.N, std::vector<T>(config.N, 1));
     auto u_temp = std::vector<std::vector<T>>(config.N, std::vector<T>(config.N, 0));
     T h = 1.0 / (config.N - 1);
@@ -135,9 +100,8 @@ void discretize_heat_equation(ProblemConfig<T> config)
         }
         std::swap(u_temp, u);
         if(config.write_every!=-1 && iteration%config.write_every==0)
-        {
-            //TODO: Write to vti file
-            write_vti_file(u,iteration,config.N);
+        {  
+            write_solution(u, "output_raw/" + std::to_string(iteration)+","+std::to_string(t) + ".txt");
         }
         iteration++;
     }
