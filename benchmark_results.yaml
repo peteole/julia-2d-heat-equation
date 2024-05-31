@@ -263,6 +263,15 @@
       std: 0.0022377419689818046
     memory: 19689048
 12800.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 752.127771904
+      max: 752.127771904
+      min: 752.127771904
+      mean: 752.127771904
+      std: .NaN
+    memory: 1624
   pytorch_array:
     time_unit: "s"
     time:
