@@ -1,4 +1,13 @@
 6400.yaml:
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 203.719057553
+      max: 203.719057553
+      min: 203.719057553
+      mean: 203.719057553
+      std: .NaN
+    memory: 1624
   julia_parallel_stencil:
     time_unit: "s"
     time:
