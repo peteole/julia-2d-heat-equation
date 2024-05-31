@@ -560,7 +560,7 @@
       min: 0.677325988
       mean: 0.8199709501428571
       std: 0.06357947791887752
-memory: 21821344
+    memory: 21821344
 1600.yaml:
   cpp_naive:
     time_unit: "s"
