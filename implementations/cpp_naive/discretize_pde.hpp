@@ -95,7 +95,7 @@ void discretize_heat_equation(ProblemConfig<T> config)
         {
             for (int j = 1; j < config.N - 1; j++)
             {
-                u_temp[i][j] = u[i][j] + config.dt / (4 * h * h) * (u[i - 1][j] + u[i + 1][j] + u[i][j + 1] + u[i][j - 1] - 4 * u[i][j]);
+                u_temp[i][j] = u[i][j] + config.dt / (h * h) * (u[i - 1][j] + u[i + 1][j] + u[i][j + 1] + u[i][j - 1] - 4 * u[i][j]);
             }
         }
         std::swap(u_temp, u);

@@ -26,8 +26,7 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int,devic
         conv_layer.weight = nn.Parameter(custom_weights)
         iteration=1
         for t in tqdm.tqdm(np.arange(0, t_end, dt)):
-            u[:, 1:-1, 1:-1] += dt / (4 * h * h) * conv_layer(u)
-            t += dt
+            u[:, 1:-1, 1:-1] += dt / (h * h) * conv_layer(u)
             if write_every != -1 and iteration % write_every == 0:
                 grid = pv.grid.ImageData(dimensions=(N, N, 1))
                 # Convert the torch tensor to a numpy array

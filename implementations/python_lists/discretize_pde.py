@@ -20,9 +20,8 @@ def discretize_heat_equation(N:int, dt:float, t_end:float, write_every:int):
         u_tmp = u
         for i in range(1,N-1):
             for j in range(1,N- 1):
-                u_tmp[i][ j] = u[i][ j] + dt / (4 * h * h) * (u[i-1][ j] + u[i+1][ j] + u[i][ j-1] + u[i][j+1] - 4 * u[i][ j])
+                u_tmp[i][ j] = u[i][ j] + dt / (h * h) * (u[i-1][ j] + u[i+1][ j] + u[i][ j-1] + u[i][j+1] - 4 * u[i][ j])
         u = u_tmp
-        t += dt
         if write_every != -1 and iteration % write_every == 0:
             grid = pv.grid.ImageData(dimensions=(N, N, 1))
             # Convert the torch tensor to a numpy array

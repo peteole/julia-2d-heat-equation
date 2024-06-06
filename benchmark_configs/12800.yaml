@@ -1,5 +1,5 @@
 discretization:
   N: 12800
-  dt: 0.000000002
-t_end: 0.00001
+  dt: 0.0000000002
+t_end: 0.000001
 write_every: -1

@@ -17,7 +17,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
 
 
     for (iteration, t) = ProgressBar(enumerate(0:dt:t_end))
-        @views U_new[2:end-1, 2:end-1] .= U[2:end-1, 2:end-1] .+ dt / (4 * h^2) .* (
+        @views U_new[2:end-1, 2:end-1] .= U[2:end-1, 2:end-1] .+ dt / (h^2) .* (
             U[1:end-2, 2:end-1] .+
             U[3:end, 2:end-1] .+
             U[2:end-1, 1:end-2] .+

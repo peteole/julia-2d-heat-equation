@@ -18,7 +18,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     for (iteration,t) in ProgressBar(enumerate(0:dt:t_end))
         for j = 2:N-1
             for i = 2:N-1
-                @inbounds U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
+                @inbounds U_new[i, j] = U[i, j] + dt / (h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
             end
         end
         if write_every!=-1 && iteration % write_every == 0
