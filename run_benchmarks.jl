@@ -1,10 +1,26 @@
 using YAML
 
-benchmarks = Dict()
+# Ensure that the benchmark_results.yaml file exists
+if !isfile("benchmark_results.yaml")
+    YAML.write_file("benchmark_results.yaml", Dict())
+end
+
+benchmark_filter = name -> startswith(name, "100")
+implementaion_filter = impl_name -> true
+
+benchmarks = YAML.load_file("benchmark_results.yaml")
 for benchmark in readdir("benchmark_configs/")
     # for each folder in `implementations`
-    benchmarks[benchmark] = Dict()
+    if !benchmark_filter(benchmark)
+        continue
+    end
+    if !haskey(benchmarks, benchmark)
+        benchmarks[benchmark] = Dict()
+    end
     for implementation in readdir("implementations/")
+        if !implementaion_filter(implementation)
+            continue
+        end
         if !ispath("implementations/$implementation/benchmark.sh")
             continue
         end
@@ -24,6 +40,7 @@ for benchmark in readdir("benchmark_configs/")
             end
         end
         benchmarks[benchmark][implementation] = YAML.load_file("implementations/$implementation/benchmark_results.yaml")
+        YAML.write_file("benchmark_results.yaml", benchmarks)
     end
 end
 YAML.write_file("benchmark_results.yaml", benchmarks)

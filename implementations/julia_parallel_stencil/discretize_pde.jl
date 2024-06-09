@@ -14,7 +14,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
     U[:, N] .= 0
     U_new::Matrix{Float64}= copy(U)
 
-
+    println("Running with $(Threads.nthreads()) threads")
     for (iteration,t) in ProgressBar(enumerate(0:dt:t_end))
         Threads.@threads for j = 2:N-1
             for i = 2:N-1

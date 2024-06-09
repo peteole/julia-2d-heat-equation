@@ -15,10 +15,10 @@ with open(filename) as stream:
     flops=N**2*t_end/dt
     max_flops=100**2*5000
     speedup_factor=max(1,flops/max_flops) # >1 if we need to speed up
-    assert speedup_factor <= t_end/dt , "speedup factor too big"
+    assert speedup_factor <= t_end/dt/5 , "speedup factor too big"
     t_end=t_end/speedup_factor
     #benchmark
-    num_iterations=1
+    num_iterations=3
     times=[]
     for i in range(num_iterations):
         start=time.time()
