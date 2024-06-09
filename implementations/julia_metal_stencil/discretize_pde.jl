@@ -23,7 +23,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
         if i == 1 || i == N || j == 1 || j == N
             U_new[i, j] = 0
         elseif i > 1 && i < N && j > 1 && j < N
-            U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
+            U_new[i, j] = U[i, j] + dt / (h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
         end
         return
     end

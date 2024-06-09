@@ -6,7 +6,7 @@ function heat_kernel(U, U_new, dt, h, N)
     j = threadIdx().x + (blockIdx().x - 1) * blockDim().x
     i = threadIdx().y + (blockIdx().y - 1) * blockDim().y
     if i < N && j < N && i > 1 && j > 1
-        @inbounds U_new[i, j] = U[i, j] + dt / (4 * h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
+        @inbounds U_new[i, j] = U[i, j] + dt / (h^2) * (U[i-1, j] + U[i + 1, j] + U[i, j - 1] + U[i, j + 1] - 4 * U[i, j])
     end
     return
 end

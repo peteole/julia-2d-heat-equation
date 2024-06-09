@@ -27,7 +27,7 @@ $$
   y_j = j \cdot h \\
   t_n = n \cdot \Delta t \\
   h = \frac{1}{N-1} \\
-  u_{i,j}^{n+1}= u_{i,j}^n + \frac{\Delta t}{4h^2} \cdot (u_{i+1,j}^n + u_{i-1,j}^n + u_{i,j+1}^n + u_{i,j-1}^n\\
+  u_{i,j}^{n+1}= u_{i,j}^n + \frac{\Delta t}{h^2} \cdot (u_{i+1,j}^n + u_{i-1,j}^n + u_{i,j+1}^n + u_{i,j-1}^n\\
   \quad - 4 \cdot u_{i,j}^n) \\
   u_{i,j}^0 = 1 \\
   u_{i,j}^n = 0 \quad \text{for} \quad i = 0, i = N, j = 0, j = N
