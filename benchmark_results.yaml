@@ -1,4 +1,30 @@
 6400.yaml:
+  pytorch_conv:
+    time_unit: "s"
+    time:
+      median: 10.097856283187866
+      max: 12.33391809463501
+      min: 10.073829174041748
+      mean: 10.540362548828124
+      std: 0.8968281193628168
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 48.34648338432
+      max: 50.00036016128
+      min: 48.01370411008
+      mean: 48.61060973363199
+      std: 0.8236090503108879
+    memory: 656024968
+  julia_cuda_stencil:
+    time_unit: "s"
+    time:
+      median: 6.661165499
+      max: 6.661165499
+      min: 6.661165499
+      mean: 6.661165499
+      std: .NaN
+    memory: 26349752
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -8,32 +34,6 @@
       mean: 61.060064491519995
       std: 0.5629081988709116
     memory: 655761000
-  cpp_naive:
-    time_unit: "s"
-    time:
-      median: 203.719057553
-      max: 203.719057553
-      min: 203.719057553
-      mean: 203.719057553
-      std: .NaN
-    memory: 1624
-  pytorch_array:
-    time_unit: "s"
-    time:
-      median: 21.451743364334106
-      max: 21.747036933898926
-      min: 21.450482606887817
-      mean: 21.51051754951477
-      std: 0.11826145183993568
-  julia_sequential_array:
-    time_unit: "s"
-    time:
-      median: 592.14736912384
-      max: 592.14736912384
-      min: 592.14736912384
-      mean: 592.14736912384
-      std: .NaN
-    memory: 655752792
   numpy_array:
     time_unit: "s"
     time:
@@ -51,32 +51,6 @@
       mean: 6.602291345
       std: .NaN
     memory: 3688
-  pytorch_conv:
-    time_unit: "s"
-    time:
-      median: 10.097856283187866
-      max: 12.33391809463501
-      min: 10.073829174041748
-      mean: 10.540362548828124
-      std: 0.8968281193628168
-  julia_sequential_stencil:
-    time_unit: "s"
-    time:
-      median: 180.13122240512
-      max: 182.37024645120002
-      min: 177.89219835904
-      mean: 180.13122240512
-      std: 3.166458172445824
-    memory: 655579640
-  julia_cuda_stencil:
-    time_unit: "s"
-    time:
-      median: 6.661165499
-      max: 6.661165499
-      min: 6.661165499
-      mean: 6.661165499
-      std: .NaN
-    memory: 26349752
   julia_cuda_array:
     time_unit: "s"
     time:
@@ -86,6 +60,59 @@
       mean: 3.065303879
       std: 0.44236887882069026
     memory: 21981152
+  pytorch_array:
+    time_unit: "s"
+    time:
+      median: 21.451743364334106
+      max: 21.747036933898926
+      min: 21.450482606887817
+      mean: 21.51051754951477
+      std: 0.11826145183993568
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 592.14736912384
+      max: 592.14736912384
+      min: 592.14736912384
+      mean: 592.14736912384
+      std: .NaN
+    memory: 655752792
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 49.82850473984
+      max: 51.66540230656
+      min: 49.424886128640004
+      mean: 50.201948635136
+      std: 0.8883675952323676
+    memory: 657142792
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 203.719057553
+      max: 203.719057553
+      min: 203.719057553
+      mean: 203.719057553
+      std: .NaN
+    memory: 1624
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 180.13122240512
+      max: 182.37024645120002
+      min: 177.89219835904
+      mean: 180.13122240512
+      std: 3.166458172445824
+    memory: 655579640
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 56.05863131136
+      max: 56.823729315840005
+      min: 55.38114347008
+      mean: 56.080533852159995
+      std: 0.7705599169112519
+    memory: 656313640
 200.yaml:
   pytorch_conv:
     time_unit: "s"
@@ -95,6 +122,15 @@
       min: 0.3736453056335449
       mean: 0.9551114082336426
       std: 1.151237833140376
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 0.1315045405
+      max: 0.155125818
+      min: 0.126438357
+      mean: 0.1334127597105263
+      std: 0.006907994430362704
+    memory: 25290624
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -164,6 +200,15 @@
       mean: 0.5727551203333333
       std: 0.002115085379877306
     memory: 2359368
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 0.324327588
+      max: 0.426378125
+      min: 0.317502565
+      mean: 0.3367910648
+      std: 0.03188454221630854
+    memory: 70755888
   cpp_naive:
     time_unit: "s"
     time:
@@ -182,6 +227,15 @@
       mean: 0.08988355914285714
       std: 0.007153223969262085
     memory: 2320432
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 0.151799908
+      max: 0.191185036
+      min: 0.146105416
+      mean: 0.1535779090909091
+      std: 0.00900813815053804
+    memory: 36652888
 400.yaml:
   pytorch_conv:
     time_unit: "s"
@@ -191,6 +245,15 @@
       min: 0.36962890625
       mean: 0.9471116542816163
       std: 1.13980321116804
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 0.295192187
+      max: 0.323033076
+      min: 0.286443821
+      mean: 0.2971555975882353
+      std: 0.011314170252584438
+    memory: 27222384
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -260,6 +323,15 @@
       mean: 2.257705285
       std: 0.012127991298253316
     memory: 4406760
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 0.447584107
+      max: 0.51921184
+      min: 0.437412989
+      mean: 0.4562620159090909
+      std: 0.025524273877088735
+    memory: 72684200
   cpp_naive:
     time_unit: "s"
     time:
@@ -278,24 +350,42 @@
       mean: 0.32760631837500004
       std: 0.0057133724927138484
     memory: 4259944
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 0.3179355435
+      max: 0.35297066
+      min: 0.309082846
+      mean: 0.31953524587500004
+      std: 0.010884043987210166
+    memory: 38585088
 12800.yaml:
-  pytorch_array:
+  pytorch_conv:
     time_unit: "s"
     time:
-      median: 85.50661134719849
-      max: 85.50686550140381
-      min: 83.97957587242126
-      mean: 85.20111289024354
-      std: 0.610768640541987
-  cpp_naive:
+      median: 40.98088192939758
+      max: 40.98353695869446
+      min: 40.97734808921814
+      mean: 40.98072757720947
+      std: 0.0019791793335220036
+  julia_parallel_stencil_8_threads:
     time_unit: "s"
     time:
-      median: 752.127771904
-      max: 752.127771904
-      min: 752.127771904
-      mean: 752.127771904
+      median: 309.01917499392
+      max: 317.21195372544
+      min: 289.79710967808
+      mean: 305.34274613248
+      std: 14.072331555758252
+    memory: 2621648488
+  julia_cuda_stencil:
+    time_unit: "s"
+    time:
+      median: 31.904770072
+      max: 31.904770072
+      min: 31.904770072
+      mean: 31.904770072
       std: .NaN
-    memory: 1624
+    memory: 28246760
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -305,15 +395,6 @@
       mean: 389.2313601911466
       std: 13.84134187762585
     memory: 2621574200
-  julia_sequential_array:
-    time_unit: "s"
-    time:
-      median: 2471.32500672512
-      max: 2471.32500672512
-      min: 2471.32500672512
-      mean: 2471.32500672512
-      std: .NaN
-    memory: 2621544400
   numpy_array:
     time_unit: "s"
     time:
@@ -331,32 +412,6 @@
       mean: 31.452890615
       std: .NaN
     memory: 3688
-  pytorch_conv:
-    time_unit: "s"
-    time:
-      median: 40.98088192939758
-      max: 40.98353695869446
-      min: 40.97734808921814
-      mean: 40.98072757720947
-      std: 0.0019791793335220036
-  julia_sequential_stencil:
-    time_unit: "s"
-    time:
-      median: 783.71966287872
-      max: 804.4904890368
-      min: 762.94883672064
-      mean: 783.71966287872
-      std: 29.3743840544506
-    memory: 2621544400
-  julia_cuda_stencil:
-    time_unit: "s"
-    time:
-      median: 31.904770072
-      max: 31.904770072
-      min: 31.904770072
-      mean: 31.904770072
-      std: .NaN
-    memory: 28246760
   julia_cuda_array:
     time_unit: "s"
     time:
@@ -366,6 +421,59 @@
       mean: 24.880493724
       std: .NaN
     memory: 23642088
+  pytorch_array:
+    time_unit: "s"
+    time:
+      median: 85.50661134719849
+      max: 85.50686550140381
+      min: 83.97957587242126
+      mean: 85.20111289024354
+      std: 0.610768640541987
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 2471.32500672512
+      max: 2471.32500672512
+      min: 2471.32500672512
+      mean: 2471.32500672512
+      std: .NaN
+    memory: 2621544400
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 311.28740888576004
+      max: 319.57856124927997
+      min: 303.38149531648
+      mean: 311.41582181717337
+      std: 8.099296489114518
+    memory: 2621930216
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 752.127771904
+      max: 752.127771904
+      min: 752.127771904
+      mean: 752.127771904
+      std: .NaN
+    memory: 1624
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 783.71966287872
+      max: 804.4904890368
+      min: 762.94883672064
+      mean: 783.71966287872
+      std: 29.3743840544506
+    memory: 2621544400
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 310.76387618816
+      max: 318.7245883392
+      min: 291.5881033728
+      mean: 307.02552263338663
+      std: 13.949145836153495
+    memory: 2621718920
 100.yaml:
   pytorch_conv:
     time_unit: "s"
@@ -375,6 +483,15 @@
       min: 0.37319064140319824
       mean: 0.956790542602539
       std: 1.1591113487281952
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 0.109962146
+      max: 0.13621085
+      min: 0.103217286
+      mean: 0.11097057033333332
+      std: 0.007134919107895506
+    memory: 24806304
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -444,6 +561,15 @@
       mean: 0.15290450806060601
       std: 0.0028946498614829917
     memory: 1844552
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 0.34714433050000004
+      max: 0.438869007
+      min: 0.339131232
+      mean: 0.35784327000000005
+      std: 0.027277931428018688
+    memory: 70275840
   cpp_naive:
     time_unit: "s"
     time:
@@ -462,6 +588,15 @@
       mean: 0.03354682148993288
       std: 0.0016634498924574242
     memory: 1837080
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 0.14167502399999998
+      max: 0.235751478
+      min: 0.12798972
+      mean: 0.14798883629411763
+      std: 0.020736987573419196
+    memory: 36172936
 800.yaml:
   pytorch_conv:
     time_unit: "s"
@@ -471,6 +606,15 @@
       min: 0.3735992908477783
       mean: 0.9432954788208008
       std: 1.1265958830739158
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 0.948837751
+      max: 0.957957776
+      min: 0.918111694
+      mean: 0.9417021861666667
+      std: 0.01876501027986822
+    memory: 34956488
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -540,6 +684,15 @@
       mean: 8.972087326
       std: .NaN
     memory: 12600536
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 1.059763588
+      max: 1.141341462
+      min: 1.023102157
+      mean: 1.0681168174
+      std: 0.047128878129572574
+    memory: 80413368
   cpp_naive:
     time_unit: "s"
     time:
@@ -558,7 +711,42 @@
       mean: 1.2892820865
       std: 0.02270408010125116
     memory: 12010288
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 0.973654683
+      max: 0.988325418
+      min: 0.955570494
+      mean: 0.9710579375
+      std: 0.012904835884085026
+    memory: 46318696
 3200.yaml:
+  pytorch_conv:
+    time_unit: "s"
+    time:
+      median: 2.535444498062134
+      max: 5.303047180175781
+      min: 2.5354084968566895
+      mean: 3.0901469707489015
+      std: 1.106452519192596
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 15.69568357888
+      max: 15.816142336
+      min: 15.512601978880001
+      mean: 15.680027868160002
+      std: 0.13080201927636992
+    memory: 166330280
+  julia_cuda_stencil:
+    time_unit: "s"
+    time:
+      median: 1.3644840340000002
+      max: 1.37504732
+      min: 1.355610753
+      mean: 1.36490653525
+      std: 0.007997395273810586
+    memory: 25382032
   julia_parallel_stencil:
     time_unit: "s"
     time:
@@ -568,32 +756,6 @@
       mean: 15.83484859136
       std: 0.08572483045864149
     memory: 165212432
-  cpp_naive:
-    time_unit: "s"
-    time:
-      median: 45.608430943
-      max: 45.608430943
-      min: 45.608430943
-      mean: 45.608430943
-      std: .NaN
-    memory: 1624
-  pytorch_array:
-    time_unit: "s"
-    time:
-      median: 5.439781427383423
-      max: 6.215458631515503
-      min: 5.439230680465698
-      mean: 5.594775772094726
-      std: 0.31034150554547224
-  julia_sequential_array:
-    time_unit: "s"
-    time:
-      median: 145.12460288
-      max: 145.12460288
-      min: 145.12460288
-      mean: 145.12460288
-      std: .NaN
-    memory: 164686840
   numpy_array:
     time_unit: "s"
     time:
@@ -611,32 +773,6 @@
       mean: 1.40964293175
       std: 0.003970373687813905
     memory: 3688
-  pytorch_conv:
-    time_unit: "s"
-    time:
-      median: 2.535444498062134
-      max: 5.303047180175781
-      min: 2.5354084968566895
-      mean: 3.0901469707489015
-      std: 1.106452519192596
-  julia_sequential_stencil:
-    time_unit: "s"
-    time:
-      median: 40.63428258816
-      max: 40.7647066112
-      min: 40.50385856512
-      mean: 40.63428258816
-      std: 0.18444742224242872
-    memory: 164192704
-  julia_cuda_stencil:
-    time_unit: "s"
-    time:
-      median: 1.3644840340000002
-      max: 1.37504732
-      min: 1.355610753
-      mean: 1.36490653525
-      std: 0.007997395273810586
-    memory: 25382032
   julia_cuda_array:
     time_unit: "s"
     time:
@@ -646,6 +782,59 @@
       mean: 0.8232104729999999
       std: 0.06374067876230534
     memory: 21817744
+  pytorch_array:
+    time_unit: "s"
+    time:
+      median: 5.439781427383423
+      max: 6.215458631515503
+      min: 5.439230680465698
+      mean: 5.594775772094726
+      std: 0.31034150554547224
+  julia_sequential_array:
+    time_unit: "s"
+    time:
+      median: 145.12460288
+      max: 145.12460288
+      min: 145.12460288
+      mean: 145.12460288
+      std: .NaN
+    memory: 164686840
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 14.96096783872
+      max: 15.04111771648
+      min: 14.897198469120001
+      mean: 14.965062965760001
+      std: 0.06278737806093407
+    memory: 170768096
+  cpp_naive:
+    time_unit: "s"
+    time:
+      median: 45.608430943
+      max: 45.608430943
+      min: 45.608430943
+      mean: 45.608430943
+      std: .NaN
+    memory: 1624
+  julia_sequential_stencil:
+    time_unit: "s"
+    time:
+      median: 40.63428258816
+      max: 40.7647066112
+      min: 40.50385856512
+      mean: 40.63428258816
+      std: 0.18444742224242872
+    memory: 164192704
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 15.07960096256
+      max: 15.3227544064
+      min: 14.88446777344
+      mean: 15.091606026240001
+      std: 0.2240022061595303
+    memory: 167435328
 1600.yaml:
   pytorch_conv:
     time_unit: "s"
@@ -655,6 +844,15 @@
       min: 0.667076826095581
       mean: 1.2371163845062256
       std: 1.1399696831203818
+  julia_parallel_stencil_8_threads:
+    time_unit: "s"
+    time:
+      median: 3.6940635584
+      max: 3.7599217996800003
+      min: 3.5950864512
+      mean: 3.68578384192
+      std: 0.06871891117382455
+    memory: 50692872
   julia_cuda_stencil:
     time_unit: "s"
     time:
@@ -724,6 +922,15 @@
       mean: 36.075417392640006
       std: .NaN
     memory: 42638088
+  julia_parallel_stencil_24_threads:
+    time_unit: "s"
+    time:
+      median: 3.64196530944
+      max: 3.6812676736
+      min: 3.40781884672
+      mean: 3.5932542848000004
+      std: 0.12720892592504743
+    memory: 68447096
   cpp_naive:
     time_unit: "s"
     time:
@@ -742,3 +949,12 @@
       mean: 9.62055266432
       std: 0.016634726625393583
     memory: 41877952
+  julia_parallel_stencil_12_threads:
+    time_unit: "s"
+    time:
+      median: 3.6210426726400002
+      max: 3.64739081984
+      min: 3.61148964096
+      mean: 3.62524145152
+      std: 0.016341923207787924
+    memory: 55132184
