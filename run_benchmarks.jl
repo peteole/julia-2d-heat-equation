@@ -5,11 +5,13 @@ if !isfile("benchmark_results.yaml")
     YAML.write_file("benchmark_results.yaml", Dict())
 end
 
-benchmark_filter = name -> startswith(name, "100")
+benchmark_filter = name -> true#startswith(name, "100")
 implementaion_filter = impl_name -> true
 
 benchmarks = YAML.load_file("benchmark_results.yaml")
-for benchmark in readdir("benchmark_configs/")
+benchmark_names = readdir("benchmark_configs/")
+sort!(benchmark_names, by=name->parse(Int, split(name, ".")[1]))
+for benchmark in benchmark_names
     # for each folder in `implementations`
     if !benchmark_filter(benchmark)
         continue
