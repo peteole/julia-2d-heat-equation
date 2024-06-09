@@ -16,7 +16,7 @@ function discretize_heat_equation(N::Int, dt::Float64, t_end::Float64, write_eve
 
     println("Running with $(Threads.nthreads()) threads")
     for (iteration,t) in ProgressBar(enumerate(0:dt:t_end))
-        Threads.@threads for j = 2:N-1
+        Threads.@threads :static for j = 2:N-1
             for i = 2:N-1
                 @inbounds U_new[i, j] = U[i, j] + dt / (h^2) * (U[i-1, j] + U[i+1, j] + U[i, j-1] + U[i, j+1] - 4 * U[i, j])
             end
