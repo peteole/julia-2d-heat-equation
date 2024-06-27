@@ -21,4 +21,3 @@ implementations/cpp_cuda_stencil/main
 implementations/cpp_naive/output_raw/**
 implementations/cpp_cuda_stencil/main
 
-figures/**
