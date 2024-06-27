@@ -1,4 +1,8 @@
-# hpc-lab
+# Benchmarking Julia on the 2d heat equation
+
+This project benchmarks different implementations of the transient 2d heat equation in Julia on CPU and GPU against Numpy, Pytorch, and a reference implementation in C++.
+
+## Numerical scheme
 
 We compute the 2d heat equation using the explicit Euler method:
 
@@ -35,13 +39,15 @@ $$
 
 $N$ is the number of grid points in each direction including ghost cells. Therefore, the grid size is $1/(N-1)$.
 
-The solver will compute the discretization every `write_every` steps and write the result to a file called `output/{step}.vtr` with a field called `temperature`.
+The solver will compute the discretization every `write_every` steps and write the result to a file called `output/{step}.vti` with a field called `temperature`. You can visualize the output by opening `output/solution.pvd` in Paraview:
+
+![solution](figures/heat_equation.gif)
 
 ## Installation
 
 The scripts of the project only work on unix systems. On Windows, use wsl2, or run the programs manually.
 
-To install the project, clone the repository. Install python3 and pip3, and a c++ compiler with cmake. Install julia. Create a venv:
+To install the project, clone the repository. Install python3 and pip3, and a C++ compiler with cmake. Install julia. Create a venv:
 
 ```bash
 python3 -m venv env
@@ -64,6 +70,8 @@ Now install all the dependencies:
 ```bash
 ./install.sh
 ```
+
+If you do not have the hardware for a specific implementation, the install script may fail for that implementation, you can ignore the error.
 
 ## Running an implementation
 
@@ -90,15 +98,17 @@ cd implementations/my_implementation
 This will output a file called `benchmark_results.yaml` in the implementation directory with the runtime of the implementation. The format of the file is:
 
 ```yaml
-time_unit: "ns"
+time_unit: "s"
 time:
-  median: 428791.0
-  max: 4.582708e6
-  min: 409292.0
-  mean: 437511.7385
-  std: 113695.88615989713
-memory: 161544
+  median: 0.457654083
+  max: 0.494241333
+  min: 0.451452
+  mean: 0.4642664014545455
+  std: 0.014040064580616386
+memory: 23552456
 ```
+
+The scrip `benchmark.sh` in the root directory will benchmark all implementations with all configurations in the `benchmark_configs` folder and write the results to `benchmark_results.yaml`.
 
 ## Testing
 
